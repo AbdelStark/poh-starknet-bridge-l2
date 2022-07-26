@@ -28,6 +28,13 @@ func registrations{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check
     return ProofOfHumanityStarkNet.registrations(submission_id)
 end
 
+@constructor
+func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    owner : felt, poh_bridge_l1_address : felt
+):
+    return ProofOfHumanityStarkNet.constructor(owner, poh_bridge_l1_address)
+end
+
 @l1_handler
 func register{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     from_address : felt, l1_submission_id : felt, l2_human_account : felt, l1_last_checked : felt
