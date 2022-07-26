@@ -42,7 +42,15 @@ end
 func test_nominal_case{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
     alloc_locals
     let (local context : TestContext) = test_internal.prepare()
-
+    let l1_submission_id = 1000
+    let l2_human_account = 2000
+    let l1_last_checked = 123456
+    ProofOfHumanityStarkNet.register(
+        context.mocks.l1_brige_address, l1_submission_id, l2_human_account, l1_last_checked
+    )
+    let (human_registration) = ProofOfHumanityStarkNet.registrations(l1_submission_id)
+    assert human_registration.l2_human_account = l2_human_account
+    assert human_registration.l1_last_checked = l1_last_checked
     return ()
 end
 

@@ -78,7 +78,9 @@ namespace ProofOfHumanityStarkNet:
                 "ProofOfHumanityStarkNet: message was not sent by the official L1 contract"):
             assert from_address = poh_bridge_l1_address
         end
-
+        let registration = HumanRegistration(l2_human_account, l1_last_checked)
+        # Save registration
+        registrations_.write(l1_submission_id, registration)
         return ()
     end
 end
