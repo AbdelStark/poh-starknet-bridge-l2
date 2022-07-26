@@ -66,6 +66,21 @@ namespace ProofOfHumanityStarkNet:
     # ------
     # EXTERNAL FUNCTIONS
     # ------
+    func register{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+        from_address : felt,
+        l1_submission_id : felt,
+        l2_human_account : felt,
+        l1_last_checked : felt,
+    ):
+        # Check message provenance
+        let (poh_bridge_l1_address) = poh_bridge_l1_address_.read()
+        with_attr error_message(
+                "ProofOfHumanityStarkNet: message was not sent by the official L1 contract"):
+            assert from_address = poh_bridge_l1_address
+        end
+
+        return ()
+    end
 end
 
 namespace internal:

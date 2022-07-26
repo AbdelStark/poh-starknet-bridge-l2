@@ -27,3 +27,12 @@ func registrations{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check
 ) -> (human_registration : HumanRegistration):
     return ProofOfHumanityStarkNet.registrations(submission_id)
 end
+
+@l1_handler
+func register{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    from_address : felt, l1_submission_id : felt, l2_human_account : felt, l1_last_checked : felt
+):
+    return ProofOfHumanityStarkNet.register(
+        from_address, l1_submission_id, l2_human_account, l1_last_checked
+    )
+end
